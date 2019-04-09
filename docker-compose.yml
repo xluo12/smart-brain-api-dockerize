@@ -4,8 +4,9 @@ services:
   smart-brain-api-1:
     container_name: backend
     # image: node:10.15.3
+    ports:
+     - "3000:3000"
     build: ./ # build using the Dockerfile at ./
     command: npm start
     working_dir: /usr/src/smart-brain-api-1
-    ports:
-     - "5000:5000"
+    
