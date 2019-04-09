@@ -12,16 +12,10 @@ const image = require('./controllers/image');
 
 const db = knex({
   client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : 'ChrisLuo',
-    password : '',
-    database : 'smart-brain'
-  }
+  connection: process.env.POSTGRES_URI
 });
 
 const app = express();
-
 app.use(cors())
 app.use(morgan("combined"))
 app.use(bodyParser.json());
