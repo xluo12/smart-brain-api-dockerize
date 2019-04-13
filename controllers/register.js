@@ -1,3 +1,5 @@
+const createSessions = require('./signin').createSessions;
+
 const handleRegister = (req, res, db, bcrypt) => {
   const { email, name, password } = req.body;
   if (!email || !name || !password) {
@@ -20,7 +22,16 @@ const handleRegister = (req, res, db, bcrypt) => {
             joined: new Date()
           })
           .then(user => {
-            res.json(user[0]);
+            const usr = user[0];
+            console.log('User: ', usr);
+            console.log("before createSessions!!!!!");
+            createSessions(usr)
+            .then(session => {
+              const reply = { session: session, user: usr};
+              console.log("reply: ", reply);
+              res.json(reply);
+            })
+            .catch(err => res.status(400).json(err))            
           })
       })
       .then(trx.commit)
