@@ -23,12 +23,9 @@ const handleRegister = (req, res, db, bcrypt) => {
           })
           .then(user => {
             const usr = user[0];
-            console.log('User: ', usr);
-            console.log("before createSessions!!!!!");
             createSessions(usr)
             .then(session => {
               const reply = { session: session, user: usr};
-              console.log("reply: ", reply);
               res.json(reply);
             })
             .catch(err => res.status(400).json(err))            
