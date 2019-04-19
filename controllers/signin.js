@@ -41,7 +41,7 @@ const signToken = (email) => {
 }
 
 const setToken = (key, value) => {
-  return Promise.resolve(redisClient.set(key, value));
+  return Promise.resolve(redisClient.setex(key, 3600, value));
 }
 
 const createSessions = (user) => {
