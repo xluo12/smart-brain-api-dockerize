@@ -1,12 +1,17 @@
-const redisClient = require('./signin').redisClient;
 
 const requireAuth = (req, res, next) => {
     const { authorization } = req.headers;
     if (!authorization) {
         return res.status(401).json('Unauthorized');
     }
-    return redisClient.get(authorization, (err, reply) => {
-        if (err || !reply) {
+    fetch('http://localhost:23456/', {
+        method: req.method,
+        headers: req.headers,
+        authorization: req.authorization
+    })
+    .then(res => res.json())
+    .then(res => {
+        if (res.status === 401) {
             return res.status(401).json('Unauthorized');
         }
         return next();
