@@ -19,5 +19,5 @@ app.get('/', authorize);
 app.post('/', authorize);
 
 app.listen(23456, ()=> {
-  console.log('auth API is working on port 23456!');
+  console.log('auth is running on port 23456');
 })
