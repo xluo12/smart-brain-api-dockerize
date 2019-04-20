@@ -5,13 +5,10 @@ const redisClient = redis.createClient(process.env.REDIS_URI);
 
 const authorize = (req, res) => {
     const { authorization } = req.headers;
-    console.log('received request: \n');
-    console.log('authorization: \n', authorization);
     return redisClient.get(authorization, (err, reply) => {
         if (err || !reply) {
             return res.status(401).json('Unauthorized');
         } else {
-            console.log('reply: \n', reply);
             return res.status(200).json('Works!');
         }   
     })
@@ -22,5 +19,5 @@ app.get('/', authorize);
 app.post('/', authorize);
 
 app.listen(23456, ()=> {
-  console.log('auth API is working!');
+  console.log('auth API is working on port 23456!');
 })

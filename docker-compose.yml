@@ -28,7 +28,7 @@ services:
     environment:
       POSTGRES_URI: postgres://sally:secret@postgres:5432/smart-brain-docker
       REDIS_URI: redis://redis:6379
-      AUTHORIZATION_URI: auth://auth:23456
+      AUTHORIZATION_URI: http://auth:23456
     # links:
     #   - authorization
     ports:
