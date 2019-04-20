@@ -3,7 +3,6 @@ version: '3.7'
 services:
   # Postgres
   postgres:
-    # container_name: postgres
     build: ./api/postgres
     environment:
       POSTGRES_USER: sally
@@ -29,15 +28,12 @@ services:
       POSTGRES_URI: postgres://sally:secret@postgres:5432/smart-brain-docker
       REDIS_URI: redis://redis:6379
       AUTHORIZATION_URI: http://auth:23456
-    # links:
-    #   - authorization
     ports:
      - "3000:3000"
-    #  - "23455:23455"
     volumes:
      - ./api:/usr/src/smart-brain-api-1/api
 
-  # authorization
+  # Authorization api
   authorization:
     container_name: auth
     build: ./authorization # build using the Dockerfile at ./
@@ -45,8 +41,6 @@ services:
     working_dir: /usr/src/smart-brain-api-1/authorization
     environment:
       REDIS_URI: redis://redis:6379
-    # links:
-    #   - smart-brain-api-1
     ports:
      - "23456:23456"
     volumes:
