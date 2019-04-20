@@ -23,7 +23,7 @@ const handleRegister = (req, res, db, bcrypt) => {
           })
           .then(user => {
             const usr = user[0];
-            createSessions(usr)
+            createSessions(usr)    // save token to redis
             .then(session => {
               const reply = { session: session, user: usr};
               res.json(reply);
