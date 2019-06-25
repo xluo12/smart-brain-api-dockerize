@@ -1,5 +1,25 @@
-# smart-brain-api-dockerize
-Dockerize version of smart-brain-api.
+# Face recognition website
+
+- Built a NodeJS web application that given a URL link to an image, it can detect human faces from the image. • Implemented the site using ReactJS, ExpressJS, PostgreSQL, and serverless FaaS with AWS Lambda.
+- Used docker and docker-compose to streamline the deployment on Heroku cloud service.
+
+
+### Sign in
+
+![Signin Demo](demo/detect.gif)
+
+
+### Upload link & face detection
+
+![Detect Demo](demo/login.gif)
+
+
+### Update profile
+
+![Update Demo](demo/update.gif)
+
+
+### How to use
 
 1. Clone this repo
 2. Run `docker-compose up --build`
